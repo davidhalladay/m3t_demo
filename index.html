@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>M<sup>3</sup>T</title>
+    <title>M3T</title>
 
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -105,8 +105,8 @@
                         </li>
                         <li>
                             <a href="" target="_blank" rel="noopener noreferrer">
-                            <image src="img/youtube_icon.png" height="60px">
-                                <h4><strong>Video (coming soon)</strong></h4>
+                            <image src="img/logos_huggingface.png" height="60px">
+                                <h4><strong>Web demo (coming soon)</strong></h4>
                             </a>
                         </li>
                         <li>
@@ -127,11 +127,16 @@
                     Abstract
                 </h3>
                 <p class="text-justify">
-                We present Neural Mixtures of Planar Experts (<b>NeurMiPs</b>), a novel planar-based scene representation for modeling geometry and appearance. 
-                NeurMiPs leverages a collection of local planar experts in 3D space as the scene representation.  Each planar expert consists of the parameters of the local rectangular shape representing geometry and a neural radiance field modeling the color and opacity.  
-                We render novel views by calculating ray-plane intersections and composite output colors and densities at intersected points to the image. 
-                NeurMiPs blends the efficiency of explicit mesh rendering and flexibility of the neural radiance field. 
-                Experiments demonstrate superior performance and speed of our proposed method, compared to other 3D representations in novel view synthesis.
+                    Video Object Segmentation (VOS) has became increasingly important with availability of larger datasets and more complex and realistic settings, 
+                    which involve long videos with global motion (e.g, in egocentric settings), depicting small objects undergoing both rigid and non-rigid (including state) deformations. 
+                    While a number of recent approaches have been explored for this task, these data characteristics still present challenges. In this work we propose a novel, 
+                    DETR-style encoder-decoder architecture, which focuses on systematically analyzing and addressing aforementioned challenges. 
+                    Specifically, our model enables on-line inference with long videos in a windowed fashion, by breaking the video into clips and propagating context among them using time-coded memory. 
+                    We illustrate that short clip length and longer memory with learned time-coding are important design choices for achieving state-of-the-art (SoTA) performance. 
+                    Further, we propose multi-scale matching and decoding to ensure sensitivity and accuracy for small objects. 
+                    Finally, we propose a novel training strategy that focuses learning on portions of the video where an object undergoes significant deformations -- a form of "soft" hard-negative mining, 
+                    implemented as loss-reweighting. Collectively, these technical contributions allow our model to achieve SoTA performance on two complex datasets -- VISOR and VOST. 
+                    A series of detailed ablations validate our design choices as well as provide insights into the importance of parameter choices and their impact on performance.
                 </p>
             </div>
         </div>
