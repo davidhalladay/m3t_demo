@@ -42,12 +42,12 @@
                 <ul class="list-inline">
                     <li>
                         <a href="https://www.cs.ubc.ca/~rgoyal14/" target="_blank" rel="noopener noreferrer">
-                            Raghav Goyal<sup>*</sup> \(^{1, 2}\)
+                            Raghav Goyal<sup><b>*</b></sup> \(^{1, 2}\)
                         </a>
                     </li>
                     <li>
                         <a href="https://sites.google.com/view/wancyuanfan" target="_blank" rel="noopener noreferrer">
-                            Wan-Cyuan Fan<sup>*</sup> \(^{1, 2}\)
+                            Wan-Cyuan Fan<sup><b>*</b></sup> \(^{1, 2}\)
                         </a>
                     </li>
                     <li>
@@ -57,7 +57,7 @@
                     </li>
                     <li>
                         <a href="https://www.cs.ubc.ca/~lsigal/" target="_blank" rel="noopener noreferrer">
-                            Leonid Sigal \(^1, 2, 3\)
+                            Leonid Sigal \(^{1, 2, 3}\)
                         </a>
                     </li>
                 </ul>
@@ -122,7 +122,7 @@
         <!-- Abstraction, Overview figure-->
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <image src="img/overview.png" class="img-responsive" alt="overview"><br>
+                <!-- <image src="img/overview.png" class="img-responsive" alt="overview"><br> -->
                 <h3>
                     Abstract
                 </h3>
@@ -145,16 +145,37 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-                    Video
+                    Demo Video
                 </h3>
                 <div class="text-center">
                     <div style="position:relative;padding-top:56.25%;">
-                        <iframe src="https://www.youtube.com/embed/PV1dCTWL5Oo" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                        <iframe src="https://youtu.be/8CWmx2ptv_Q" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
                     </div>
                 </div>
             </div>
         </div>
-        
+        <!-- Methodology -->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <image src="img/framework.png" class="img-responsive" alt="overview"><br>
+                <h3>
+                    Abstract
+                </h3>
+                <p class="text-justify">
+                    We divide an input video into non-overlapping clips of length L. 
+                    For a query clip, we retrieve information on previous clips from our (a) <b>Clip-based Memory</b> in the form of frames and predicted (or initial reference) masks. 
+                    We use a 2D-CNN backbone to obtain features for query frames X<sup>q</sup>, and features for memory frames and masks, X<sup>M</sup> and Y<sup>M</sup> respectively. 
+                    We then use our proposed (b) <b>Multi-Scale Matching Encoder</b> to perform dense matching at multiple-scales with frame features of the query clip X<sup>q</sup> and memory frames X<sup>M</sup>, 
+                    and use the resulting similarity between frames to obtain query clip’s mask features Y<sup>q,enc</sup> as a weighted combination of the memory mask features Y<sup>M</sup>. 
+                    In doing so, we modulate the similarity using our proposed <b>Relative-Time Encoding</b> (RTE) to learn recency of information in memory, thereby facilitating propagation over long-time spans. 
+                    We then use (c) <b>Multi-Scale Decoder</b> to aggregate the resulting query clip’s mask features Y<sup>q</sup>,enc with clip’s frame features X<sup>q</sup> using Pixel Decoder to give contexualized feature pyramid Y<sup>q,fpn</sup>. 
+                    Finally, we use <b>Space-Time Decoder</b> to decode mask predictions Y<sup>q</sup> , by refining learned time embeddings on the contextualized feature pyramid Y<sup>q,fpn</sup>. 
+                    We update the memory with the predictions from last frame (=L<sup>th</sup> index) in the query clip, implemented as FIFO queue. 
+                    During training, we use our transformation-aware loss L<sup>tr</sup> to form segmentation loss for the entire video.
+                </p>
+            </div>
+        </div>
+
         <!-- Results -->
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
