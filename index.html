@@ -1,251 +1,348 @@
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Shape-aware Text-driven Layered Video Editing Demo</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style/main.css">
-    <link rel="stylesheet" href="style/glide.core.min.css">
-    <link rel="stylesheet" href="style/glide.theme.min.css">
-    <link rel="stylesheet" href="style/glide-custom.css">
-  </head>
-  <body onload="selectVideo('car-turn'); selectComparisonVideo('boat'); selectAppVideo('whiteswan')">
-    <div class="container" id="container">
-      <div class="page page1">
-        <h1 style="text-align: center">Shape-aware Text-driven Layered Video Editing</h1>
-        <div class="authors">
-          <div><a href="https://yaochih.github.io/">Yao-Chih Lee</a></div>
-          <div>Ji-Ze Genevieve Jang</div>
-          <div><a href="https://jamie725.github.io/website/">Yi-Ting Chen</a></div>
-          <div><a href="https://elizabethqiu.com/">Elizabeth Qiu</a></div>
-          <div><a href="https://jbhuang0604.github.io/">Jia-Bin Huang</a></div>
-        </div>
-        <p style="text-align: center">University of Maryland, College Park</p>
-        <h3 style="text-align: center"><b>CVPR 2023</b></h3>
-        <br/>
-        <div class="links">
-          <a class="btn-solid-lg" href="https://openaccess.thecvf.com/content/CVPR2023/html/Lee_Shape-Aware_Text-Driven_Layered_Video_Editing_CVPR_2023_paper.html"><i class="fa fa-file-pdf-o"></i> Paper</a>
-          <a class="btn-solid-lg" href="https://github.com/text-video-edit/shape-aware-text-driven-layered-video-editing-release"><i class="fa fa-github"></i> Code</a>
-        </div>
-        
-        <div class="teaser">
-          <div class="glide" id="teaser-glide">
-            <div data-glide-el="track" class="glide__track">
-              <ul class="glide__slides">
-                <li class="glide__slide">
-                  <video muted loop autoplay defaultMuted playsinline webkit-playsinline class="teaser-video-0">
-                    <source src="videos/teaser/car-turn.mp4" type="video/mp4"/>
-                  </video>
-                </li>
-                <li class="glide__slide">
-                  <video muted loop defaultMuted playsinline webkit-playsinline class="teaser-video-1">
-                    <source src="videos/teaser/blackswan.mp4" type="video/mp4"/>
-                  </video>
-                </li>
-                <li class="glide__slide">
-                  <video muted loop defaultMuted playsinline webkit-playsinline class="teaser-video-2">
-                    <source src="videos/teaser/libby.mp4" type="video/mp4"/>
-                  </video>
-                </li>
-                <li class="glide__slide">
-                  <video muted loop defaultMuted playsinline webkit-playsinline class="teaser-video-3">
-                    <source src="videos/teaser/truck.mp4" type="video/mp4"/>
-                  </video>
-                </li>
-              </ul>
-            </div>
 
-            <div class="glide__arrows" data-glide-el="controls">
-              <span class="glide__arrow glide__arrow--left" data-glide-dir="<"><img src="dist/arrow-left-circle-fill.svg"/></span>
-              <span class="glide__arrow glide__arrow--right" data-glide-dir=">"><img src="dist/arrow-right-circle-fill.svg"/></span>
-            </div>
-            <div class="glide__bullets" data-glide-el="controls[nav]">
-              <span class="glide__bullet" data-glide-dir="=0"></span>
-              <span class="glide__bullet" data-glide-dir="=1"></span>
-              <span class="glide__bullet" data-glide-dir="=2"></span>
-              <span class="glide__bullet" data-glide-dir="=3"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-        
-      <div class="page page2"  id="video-demo">
-        <h2 style="margin-top: 60px;">Interactive video demo</h2>
-        <div class="cocoen" style="width: 100%;">
-          <video id="video-player1" autoplay muted defaultMuted playsinline webkit-playsinline onended="" style="display: block;">
-              <source id="video-src1" src="">
-          </video>
-          <video id="video-player2" autoplay muted defaultMuted playsinline webkit-playsinline onended="loadVideo(true)" style="display: block;">
-              <source id="video-src2" src="">
-          </video>
-        </div>
-        <p style="margin-top: 5px; text-align: center;">Slide the bar to compare input (left) and output (right)</p>
-        <p><b>Input video</b></p>
-        <div class="btn-group">
-          <button class='btn-video' style="width:18%" onclick="selectVideo('car-turn')">Car-turn</button>
-          <button class='btn-video' style="width:18%" onclick="selectVideo('blackswan')">Blackswan</button>
-          <button class='btn-video' style="width:18%" onclick="selectVideo('boat')">Boat</button>
-          <button class='btn-video' style="width:18%" onclick="selectVideo('libby')">Libby</button>
-          <button class='btn-video' style="width:18%" onclick="selectVideo('surf')">Surf</button>
-          <button class='btn-video' style="width:18%" onclick="selectVideo('motorbike')">Motorbike</button>
-          <button class='btn-video' style="width:18%" onclick="selectVideo('kite-surf')">Kite-surf</button>
-          <button class='btn-video' style="width:18%" onclick="selectVideo('truck')">Truck</button>
-          <button class='btn-video' style="width:18%" onclick="selectVideo('kid')">Kid</button>
-        </div>
-        <p><b>Foreground</b></p>
-        <div class="btn-group">
-            <button class='btn-fg' style="width:23%" onclick="selectFG(0)">source</button>
-            <button class='btn-fg' style="width:23%" onclick="selectFG(1)">sports</button>
-            <button class='btn-fg' style="width:23%" onclick="selectFG(2)">minivan</button>
-            <button class='btn-fg' style="width:23%" onclick="selectFG(3)">SUV</button>
-        </div>
-        <p><b>Background</b></p>
-        <div class="btn-group">
-          <button class='btn-bg' style="width:23%" onclick="selectBG(0)">source</button>
-          <button class='btn-bg' style="width:23%" onclick="selectBG(1)">grassland</button>
-          <button class='btn-bg' style="width:23%" onclick="selectBG(2)">snow</button>
-          <button class='btn-bg' style="width:23%" onclick="selectBG(3)">rural</button>
-        </div>
-        <br/><br/>
-      </div>
-    </div>
-    <div class="container">
-      <h2>Abstract</h2>
-      <p style="text-align: justify;">Temporal consistency is essential for video editing applications.
-        Existing work on layered representation of videos allows propagating edits consistently to each frame. 
-        These methods, however, can only edit object <i>appearance</i> rather than object <i>shape</i> changes due to the limitation of using a fixed UV mapping field for texture atlas. 
-        We present a shape-aware, text-driven video editing method to tackle this challenge. 
-        To handle shape changes in video editing, we first propagate the deformation field between the input and edited keyframe to all frames.
-        We then leverage a pre-trained text-conditioned diffusion model as guidance for refining shape distortion and completing unseen regions. 
-        The experimental results demonstrate that our method can achieve shape-aware consistent video editing and compare favorably with the state-of-the-art.</p>
-      <h2 style="margin-top: 40px;">Overview</h2>
-      <p>
-        Our method first bases on a pre-trained <a href="https://layered-neural-atlases.github.io/">NLA</a> to decompose the video into unified atlases with the associated per-frame UV mapping. 
-        The dense semantic correspondence between the input and edited keyframe serves as the <i>bridge</i> between input and output videos for per-frame deformation through the UV mapping and atlas. 
-      </p>
-      <img src="figures/overview.svg" style="width: 100%">
-      <p>
-        Our deformation module maps the edits back to the atlas via the original UV map by using the semantic correspondence of the keyframe. The per-pixel deformation vectors are transformed into the atlas space with the same UV mapping field.
-        Consequently, the UV map samples the color and the deformation vectors onto each frame to deform the original UV map respecting the edited shape.
-      </p>
-      <img src="figures/deformation.svg" style="width: 100%">
-    </div>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <div class="container" id="comparison-video">
-      <h2>Comparison with baseline methods and SOTA</h2>
-      <div style="display: block;" id="comparison-video-div">
-        <video id="comparison-player1"  style="width: 49%" autoplay muted defaultMuted playsinline webkit-playsinline onended="">
-          <source id="comparison-src1" src="videos/car-turn/input.mp4" type="video/mp4">
-        </video>
-        <video id="comparison-player2"  style="width: 49%" autoplay muted defaultMuted playsinline webkit-playsinline  onended="loadComparison()">
-          <source id="comparison-src2" src="videos/car-turn/input.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div style="display: flex;flex-direction: row;">
-        <p id="comparison-caption" style="margin-top: 5px; text-align: center; width: 50%"></p>
-        <p style="margin-top: 5px; text-align: center; width: 50%;">Ours<br/><mark style="background: none; color: white">.</mark></p>
-      </div>
-      <p><b>Example</b></p>
-      <div class="btn-group btn-group-comp-video">
-        <button class='btn-comp-video'  onclick="selectComparisonVideo('car-turn')">Jeep &#8594 sports</button>
-        <button class='btn-comp-video'  onclick="selectComparisonVideo('blackswan')">black swan &#8594 duck</button>
-        <button class='btn-comp-video' onclick="selectComparisonVideo('boat')">boat &#8594 yacht</button>
-        <button class='btn-comp-video'  onclick="selectComparisonVideo('libby')">dog &#8594 cat</button>
-      </div>
-      <p><b>Compared method</b></p>
-      <div class="btn-group btn-group-comp">
-        <button class='btn-comp-method'  onclick="selectComparedMethod('input')">Input</button>
-        <button class='btn-comp-method'  onclick="selectComparedMethod('multi-frame')">Multi-frame baseline</button>
-        <button class='btn-comp-method'  onclick="selectComparedMethod('single-frame')">Single-frame baseline</button>
-        <button class='btn-comp-method'  onclick="selectComparedMethod('text2live')">Text2LIVE</button>
-      </div>
-      <br/><br/>
+    <title>NeurMips</title>
 
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    </div>
-    <div class="container">
-      <h2>Application: Shape-aware interpolation</h2>
-        <p>By linearly interpolating the deformation maps, the object shape can be easily interpolated <i>without</i> additional frame interpolation methods.</p>
-        <div style="display: block;" id="application-div">
-          <video id="app-player" autoplay muted defaultMuted playsinline webkit-playsinline onended="loadApp(true)">
-            <source id="app-src" src="" type="video/mp4">
-          </video>
-        </div>
-        <p><b>Example</b></p>
-        <div class="btn-group btn-group-app">
-          <button class='btn-app-video' onclick="selectAppVideo('duck')">black swan &#8594 duck</button>
-          <button class='btn-app-video' onclick="selectAppVideo('whiteswan')">black swan &#8594 white swan</button>
-          <button class='btn-app-video'  onclick="selectAppVideo('sports')">Jeep &#8594 sports</button>
-          <button class='btn-app-video'  onclick="selectAppVideo('train')">truck &#8594 train</button>
-        </div>
-        <br/>
-    </div>
-    <div class="container">
-    <h2>BibTex</h2>
-    <pre>
-      <code>
-@article{lee2023textvideoedit,
-  title   = {Shape-aware Text-driven Layered Video Editing Demo},
-  author  = {Lee, Yao-Chih and Jang, Ji-Ze Genevieve Jang and Chen, Yi-Ting and Qiu, Elizabeth and Huang, Jia-Bin},
-  journal = {arXiv preprint arXiv:2301.13173},
-  year    = {2023}
-}
-      </code>
-    </pre>
-    <div class="container">
-        <h2>Acknowledgements</h2>
-        <p>We thank <a href="https://layered-neural-atlases.github.io/">NLA</a> and <a href="https://text2live.github.io/">Text2LIVE</a> authors, Yoni Kasten, Dolev Ofri, Oliver Wang, Tali Dekel, Omer Bar-Tal, and Rafail Fridman, for providing the checkpoints of NLA pretrained models.</p>
-    </div>
-  </div>
+    <!-- <base href="/"> -->
 
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.js"
-      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-      crossorigin="anonymous"></script>
-    <script src="js/interactive_demo.js"></script>
-    <script src="dist/cocoen.js"></script>
-    <script src="dist/glide.min.js"></script>
-    <script>
-      Cocoen.parse(document.body);
-    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
-    <script>
-        glide = new Glide('.glide', {
-          type: "carousel",
-          perView: 1.27,
-          focusAt: "center",
-          autoplay: 5500,
-          hoverpause: true
-        }).mount();
-        let video_num = 4;
-        glide.on('run', () => {
-          var index = glide.index;
-          for(var i = 0; i < video_num; i++) {
-            if(i == index) {
-              var active_videos = document.getElementsByClassName('teaser-video-' + i);
-              for(var j = 0; j < active_videos.length; j++) {
-                var video_ele = active_videos[j];
-                var isPlaying = video_ele.currentTime > 0 && !video_ele.paused && !video_ele.ended 
-                  && video_ele.readyState > video_ele.HAVE_CURRENT_DATA;
+    <script src="js/app.js"></script>
+</head>
 
-                if (!isPlaying) {
-                  video_ele.play();
-                }
-                video_ele.load();
-                video_ele.currentTime = 0;
-                video_ele.play();
-              }
-            } else {
-              var inactive_videos = document.getElementsByClassName('teaser-video-' + i);
-              for(var j = 0; j < inactive_videos.length; j++) {
-                inactive_videos[j].pause(); 
-              }
-            }
-          }
-        });
-    </script>
-  </body>
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h2 class="col-md-12 text-center">
+                <b>NeurMips</b>: Neural Mixture of Planar Experts <br> for View Synthesis</br> 
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://zhihao-lin.github.io/" target="_blank" rel="noopener noreferrer">
+                          Zhi-Hao Lin \(^{1, 2}\)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://people.csail.mit.edu/weichium/" target="_blank" rel="noopener noreferrer">
+                            Wei-Chiu Ma \(^{3*}\)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" target="_blank" rel="noopener noreferrer">
+                          Hao-Yu Hsu \(^{2*}\)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://vllab.ee.ntu.edu.tw/ycwang.html" target="_blank" rel="noopener noreferrer">
+                          Yu-Chiang Frank Wang \(^2\)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://shenlong.web.illinois.edu/" target="_blank" rel="noopener noreferrer">
+                          Shenlong Wang \(^1\)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                    <li>
+                        \(^1\) University of Illinois at Urbana-Champaign
+                    </li>
+                    <li>
+                        \(^2\) National Taiwan University
+                    </li>
+                    <li>
+                        \(^3\) Massachusetts Institute of Technology
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                \(^*\) Equal Contribution
+            </div>
+        </div>
+        <div class="row">
+            <h2 class="col-md-12 text-center">
+                <small>
+                    CVPR 2022
+                </small>
+            </h2>
+        </div>
+
+        <div class="row">
+                <div class="col-md-4 col-md-offset-4 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="https://arxiv.org/abs/2204.13696" target="_blank" rel="noopener noreferrer">
+                            <image src="img/neurmips_paper_cover.png" height="60px">
+                                <h4><strong>Paper</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://youtu.be/PV1dCTWL5Oo" target="_blank" rel="noopener noreferrer">
+                            <image src="img/youtube_icon.png" height="60px">
+                                <h4><strong>Video</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/zhihao-lin/neurmips" target="_blank" rel="noopener noreferrer">
+                            <image src="img/github.png" height="60px">
+                                <h4><strong>Code</strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+        <!-- Abstraction, Overview figure-->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <image src="img/overview.png" class="img-responsive" alt="overview"><br>
+                <h3>
+                    Abstract
+                </h3>
+                <p class="text-justify">
+                We present Neural Mixtures of Planar Experts (<b>NeurMiPs</b>), a novel planar-based scene representation for modeling geometry and appearance. 
+                NeurMiPs leverages a collection of local planar experts in 3D space as the scene representation.  Each planar expert consists of the parameters of the local rectangular shape representing geometry and a neural radiance field modeling the color and opacity.  
+                We render novel views by calculating ray-plane intersections and composite output colors and densities at intersected points to the image. 
+                NeurMiPs blends the efficiency of explicit mesh rendering and flexibility of the neural radiance field. 
+                Experiments demonstrate superior performance and speed of our proposed method, compared to other 3D representations in novel view synthesis.
+                </p>
+            </div>
+        </div>
+
+        <!-- Video -->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Video
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe src="https://www.youtube.com/embed/PV1dCTWL5Oo" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results -->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Results: Tanks&Temple
+                </h3>
+                <p class="text-justify">
+                    The videos qualitatively compare NeurMips with <a href="https://github.com/creiser/kilonerf" target="_blank" rel="noopener noreferrer">KiloNeRF</a>.
+                </p>                
+                <div class="col-md-4 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="https://youtu.be/lWXts-ElmYo" target="_blank" rel="noopener noreferrer">
+                            <image src="img/tat/barn.png" height="200px">
+                                <h4><strong>Barn</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://youtu.be/lJl9W-i1s-I" target="_blank" rel="noopener noreferrer">
+                            <image src="img/tat/caterpillar.png" height="200px">
+                                <h4><strong>Caterpillar</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://youtu.be/zCscuDwHN4s" target="_blank" rel="noopener noreferrer">
+                            <image src="img/tat/family.png" height="200px">
+                                <h4><strong>Family</strong></h4>
+                            </a>
+                        </li>
+                        <br>
+                        <li>
+                            <a href="https://youtu.be/znsi9Spt7bY" target="_blank" rel="noopener noreferrer">
+                            <image src="img/tat/ignatius.png" height="200px">
+                                <h4><strong>Ignatius</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://youtu.be/8_bLNh_Wwg0" target="_blank" rel="noopener noreferrer">
+                            <image src="img/tat/truck.png" height="200px">
+                                <h4><strong>Truck</strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- <div class="video-tat">
+                    <iframe src="https://www.youtube.com/embed/lWXts-ElmYo?playlist=lWXts-ElmYo&loop=1&autoplay=0&mute=1" allowfullscreen width="100%" height="100%"></iframe>
+                </div>
+                <div class="video-tat">
+                    <iframe src="https://www.youtube.com/embed/lJl9W-i1s-I?playlist=lJl9W-i1s-I&loop=1&autoplay=0&mute=1" allowfullscreen width="100%" height="100%"></iframe>
+                </div>
+                <div class="video-tat">
+                    <iframe src="https://www.youtube.com/embed/zCscuDwHN4s?playlist=zCscuDwHN4s&loop=1&autoplay=0&mute=1" allowfullscreen width="100%" height="100%"></iframe>
+                </div>
+                <div class="video-tat">
+                    <iframe src="https://www.youtube.com/embed/znsi9Spt7bY?playlist=znsi9Spt7bY&loop=1&autoplay=0&mute=1" allowfullscreen width="100%" height="100%"></iframe>
+                </div>
+                <div class="video-tat">
+                    <iframe src="https://www.youtube.com/embed/8_bLNh_Wwg0?playlist=8_bLNh_Wwg0&loop=1&autoplay=0&mute=1" allowfullscreen width="100%" height="100%"></iframe>
+                </div> -->
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Results: Replica
+                </h3>
+                <p class="text-justify">
+                    The videos qualitatively compare NeurMips with <a href="https://github.com/facebookresearch/pytorch3d/tree/main/projects/nerf" target="_blank" rel="noopener noreferrer">NeRF</a> (PyTorch3D implementation) and <a href="https://nex-mpi.github.io/" target="_blank" rel="noopener noreferrer">NeX</a>, which are volume rendering method and multi-plane image (MPI) respectively.
+                </p>
+                <br>
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <ul class="nav nav-pills nav-justified">
+                            <li>
+                                <a href="https://youtu.be/RO6g-9pA0rs" target="_blank" rel="noopener noreferrer">
+                                <image src="img/replica/replica-apartment0.jpg" height="150px">
+                                    <h4><strong>Apartment 0</strong></h4>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://youtu.be/QGGRkbwnM44" target="_blank" rel="noopener noreferrer">
+                                <image src="img/replica/replica-apartment1.jpg" height="150px">
+                                    <h4><strong>Apartment 1</strong></h4>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://youtu.be/eGlpLuT-1f8" target="_blank" rel="noopener noreferrer">
+                                <image src="img/replica/replica-apartment2.jpg" height="150px">
+                                    <h4><strong>Apartment 2</strong></h4>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://youtu.be/6jIc0f0eOfk" target="_blank" rel="noopener noreferrer">
+                                <image src="img/replica/replica-frl0.jpg" height="150px">
+                                    <h4><strong>FRL 0</strong></h4>
+                                </a>
+                            </li>
+                            <br>
+                            <li>
+                                <a href="https://youtu.be/GqMEzrauJkE" target="_blank" rel="noopener noreferrer">
+                                <image src="img/replica/replica-kitchen.jpg" height="150px">
+                                    <h4><strong>Kitchen</strong></h4>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://youtu.be/zZ-1nrIK_l8" target="_blank" rel="noopener noreferrer">
+                                <image src="img/replica/replica-room0.jpg" height="150px">
+                                    <h4><strong>Room 0</strong></h4>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://youtu.be/4k_3FGSFdMA" target="_blank" rel="noopener noreferrer">
+                                <image src="img/replica/replica-room2.jpg" height="150px">
+                                    <h4><strong>Room 2</strong></h4>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div class="video-replica">
+                    <iframe src="https://www.youtube.com/embed/RO6g-9pA0rs?playlist=RO6g-9pA0rs&loop=1&autoplay=0&mute=1" allowfullscreen width="100%" height="100%"></iframe>
+                </div>
+                <div class="video-replica">
+                    <iframe src="https://www.youtube.com/embed/QGGRkbwnM44?playlist=QGGRkbwnM44&loop=1&autoplay=0&mute=1" allowfullscreen width="100%" height="100%"></iframe>
+                </div>
+                <div class="video-replica">
+                    <iframe src="https://www.youtube.com/embed/eGlpLuT-1f8?playlist=eGlpLuT-1f8&loop=1&autoplay=0&mute=1" allowfullscreen width="100%" height="100%"></iframe>
+                </div>
+                <div class="video-replica">
+                    <iframe src="https://www.youtube.com/embed/6jIc0f0eOfk?playlist=6jIc0f0eOfk&loop=1&autoplay=0&mute=1" allowfullscreen width="100%" height="100%"></iframe>
+                </div>
+                <div class="video-replica">
+                    <iframe src="https://www.youtube.com/embed/GqMEzrauJkE?playlist=GqMEzrauJkE&loop=1&autoplay=0&mute=1" allowfullscreen width="100%" height="100%"></iframe>
+                </div>
+                <div class="video-replica">
+                    <iframe src="https://www.youtube.com/embed/zZ-1nrIK_l8?playlist=zZ-1nrIK_l8&loop=1&autoplay=0&mute=1" allowfullscreen width="100%" height="100%"></iframe>
+                </div>
+                <div class="video-replica">
+                    <iframe src="https://www.youtube.com/embed/4k_3FGSFdMA?playlist=4k_3FGSFdMA&loop=1&autoplay=0&mute=1" allowfullscreen width="100%" height="100%"></iframe>
+                </div> -->
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Related links
+                </h3>
+                <p class="text-justify">
+                    The NeurMips is implemented on top of the codebase of <a href="https://github.com/facebookresearch/pytorch3d/tree/main/projects/nerf" target="_blank" rel="noopener noreferrer">NeRF (Pytorch3D implementation)</a>.
+                </p>
+               
+            </div>
+        </div>
+        
+            
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Citation
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+@inproceedings{lin2022neurmips,
+  title={NeurMiPs: Neural Mixture of Planar Experts for View Synthesis},
+  author={Lin, Zhi-Hao and Ma, Wei-Chiu and Hsu, Hao-Yu and Wang, Yu-Chiang Frank and Wang, Shenlong},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  year={2022}
+}
+                    </textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                <p class="text-justify">
+                    We thank National Center for High-performance Computing (NCHC) for providing computational and storage resources. We also thank NVIDIA for hardware donation.
+                    <br>
+                    The website template was borrowed from <a href="http://mgharbi.com/" target="_blank" rel="noopener noreferrer">Michaël Gharbi</a>.
+                    <br>
+                    WCM is partially funded by the MIT-IBM Watson AI Lab.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
