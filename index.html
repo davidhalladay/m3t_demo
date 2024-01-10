@@ -28,6 +28,21 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script src="js/app.js"></script>
+    <style>
+        .image-zoom {
+          overflow: hidden;
+          width: 200px; /* Set your preferred width */
+          height: 200px; /* Set your preferred height */
+        }
+    
+        .image-zoom img {
+          transition: transform 0.3s ease;
+        }
+    
+        .image-zoom:hover img {
+          transform: scale(1.2); /* Adjust the scale value for the desired zoom effect */
+        }
+    </style>
 </head>
 
 <body>
@@ -172,7 +187,9 @@
                 <h3>
                     Methodology
                 </h3>
-                <image src="img/framework.png" class="img-responsive" alt="overview"><br>
+                <div class="image-zoom">
+                    <image src="img/framework.png" class="img-responsive" alt="overview"><br>
+                </div>
                 <p class="text-justify">
                     We divide an input video into non-overlapping clips of length L. 
                     For a query clip, we retrieve information on previous clips from our (a) <b>Clip-based Memory</b> in the form of frames and predicted (or initial reference) masks. 
@@ -341,7 +358,7 @@
                 <h3>
                     Citation
                 </h3>
-                <div class="form-group col-md-10 col-md-offset-0">
+                <div class="form-group col-md-10 col-md-offset-1">
                     <textarea id="bibtex" class="form-control" readonly>
 @article{goyal2023m3t,
     title={M3T: Multi-Scale Memory Matching for Video Object Segmentation and Tracking},
