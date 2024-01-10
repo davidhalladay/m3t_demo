@@ -193,7 +193,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-                    Results: Tanks&Temple
+                    Results on VOST
                 </h3>
                 <p class="text-justify">
                     The videos qualitatively compare NeurMips with <a href="https://github.com/creiser/kilonerf" target="_blank" rel="noopener noreferrer">KiloNeRF</a>.
@@ -255,7 +255,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h3>
-                    Results: Replica
+                    Results on VISOR
                 </h3>
                 <p class="text-justify">
                     The videos qualitatively compare NeurMips with <a href="https://github.com/facebookresearch/pytorch3d/tree/main/projects/nerf" target="_blank" rel="noopener noreferrer">NeRF</a> (PyTorch3D implementation) and <a href="https://nex-mpi.github.io/" target="_blank" rel="noopener noreferrer">NeX</a>, which are volume rendering method and multi-plane image (MPI) respectively.
@@ -341,7 +341,9 @@
                     Related links
                 </h3>
                 <p class="text-justify">
-                    The NeurMips is implemented on top of the codebase of <a href="https://github.com/facebookresearch/pytorch3d/tree/main/projects/nerf" target="_blank" rel="noopener noreferrer">NeRF (Pytorch3D implementation)</a>.
+                    The M<sup>3</sup>T is implemented on top of the codebase of <a href="https://github.com/antoyang/TubeDETR" target="_blank" rel="noopener noreferrer">TubeDETR</a>, 
+                    <a href="https://github.com/facebookresearch/Mask2Former" target="_blank" rel="noopener noreferrer">Mask2Former</a>, 
+                    and <a href="https://github.com/TRI-ML/VOST" target="_blank" rel="noopener noreferrer">AOT in VOST</a>.
                 </p>
                
             </div>
@@ -355,12 +357,12 @@
                 </h3>
                 <div class="form-group col-md-10 col-md-offset-1">
                     <textarea id="bibtex" class="form-control" readonly>
-@inproceedings{lin2022neurmips,
-  title={NeurMiPs: Neural Mixture of Planar Experts for View Synthesis},
-  author={Lin, Zhi-Hao and Ma, Wei-Chiu and Hsu, Hao-Yu and Wang, Yu-Chiang Frank and Wang, Shenlong},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  year={2022}
-}
+                        @article{goyal2023m3t,
+                            title={M3T: Multi-Scale Memory Matching for Video Object Segmentation and Tracking},
+                            author={Goyal, Raghav and Fan, Wan-Cyuan and Siam, Mennatullah and Sigal, Leonid},
+                            journal={arXiv preprint arXiv:2312.08514},
+                            year={2023}
+                          }
                     </textarea>
                 </div>
             </div>
@@ -372,11 +374,15 @@
                     Acknowledgements
                 </h3>
                 <p class="text-justify">
-                    We thank National Center for High-performance Computing (NCHC) for providing computational and storage resources. We also thank NVIDIA for hardware donation.
-                    <br>
-                    The website template was borrowed from <a href="http://mgharbi.com/" target="_blank" rel="noopener noreferrer">Michaël Gharbi</a>.
-                    <br>
-                    WCM is partially funded by the MIT-IBM Watson AI Lab.
+                    This work was funded, in part, by the Vector Institute for AI,
+                    Canada CIFAR AI Chairs, NSERC CRC, and NSERC DGs. Resources used in preparing this research were provided, in part, by
+                    the Province of Ontario, the Government of Canada through CIFAR, the Digital Research Alliance of Canada
+                    , companies sponsoring the Vector Institute, and Advanced Research Computing at
+                    the University of British Columbia. Additional hardware support
+                    was provided by John R. Evans Leaders Fund CFI grant and Compute Canada under the Resource Allocation Competition award.
+                    Additionally, we would like to thank Pavel Tokmakov, the author of the VOST datasets, 
+                    for his invaluable assistance with the experimental results related to VOST.
+                    The website template was borrowed from <a href="http://mgharbi.com/" target="_blank">Michaël Gharbi</a>.
                 </p>
             </div>
         </div>
