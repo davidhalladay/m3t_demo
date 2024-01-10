@@ -198,10 +198,17 @@
                 <p class="text-justify">
                     The videos qualitatively compare M<sup>3</sup>T with <a href="https://github.com/z-x-yang/AOT" target="_blank" rel="noopener noreferrer">AOT</a>.
                 </p>                
-                <video width="640" height="360" controls>
-                    <source src="demo/556_cut_tomato_our.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <div class="video-grid">
+                    <div class="video-row" onclick="playVideos('row1')">
+                        <div class="video-column">
+                            <video controls id="videoA1">
+                                <source src="https://drive.google.com/file/d/124CSeYqBmfJr-XLmjH9OTsJVagnyjPGg/view?usp=sharing" type="video/mp4">
+                            </video>
+                        </div>
+                        <!-- Add video columns for B, C, and D models similarly -->
+                    </div>
+                    <!-- Add more rows similarly -->
+                </div>
 
             </div>
         </div>
