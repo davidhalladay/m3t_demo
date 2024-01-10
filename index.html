@@ -30,17 +30,23 @@
     <script src="js/app.js"></script>
     <style>
         .image-zoom {
-          overflow: hidden;
-          width: 100%; /* Set your preferred width */
-          height: 100%; /* Set your preferred height */
+        overflow: hidden;
+        width: 100%; /* Set your preferred width */
+        height: 100%; /* Set your preferred height */
+        position: relative;
         }
-    
+
         .image-zoom img {
-          transition: transform 0.3s ease;
+        transition: transform 0.3s ease;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         }
-    
+
         .image-zoom:hover img {
-          transform: scale(1.4); /* Adjust the scale value for the desired zoom effect */
+        transform: scale(1.4); /* Adjust the scale value for the desired zoom effect */
         }
     </style>
 </head>
@@ -238,16 +244,16 @@
                                 <h4> Ex. 1 </h4>
                             </td>
                             <td align="center" valign="top" width="23%">
-                                <iframe src="https://www.youtube.com/embed/FaldgWH2oVQ?controls=0&showinfo=0&loop=1&mute=1&playlist=FaldgWH2oVQ" allowfullscreen style="width:100%;"></iframe>
+                                <iframe src="https://www.youtube.com/embed/FaldgWH2oVQ?controls=0&showinfo=0&mute=1" allowfullscreen style="width:100%;"></iframe>
                             </td>
                             <td align="center" valign="top" width="23%">
-                                <iframe src="https://www.youtube.com/embed/OL7TanGNdMU?controls=0&showinfo=0&loop=1&mute=1&playlist=OL7TanGNdMU" allowfullscreen style="width:100%;"></iframe>
+                                <iframe src="https://www.youtube.com/embed/OL7TanGNdMU?controls=0&showinfo=0&mute=1" allowfullscreen style="width:100%;"></iframe>
                             </td>
                             <td align="center" valign="top" width="23%">
-                                <iframe src="https://www.youtube.com/embed/wD0Xb4rb1Ok?controls=0&showinfo=0&loop=1&mute=1&playlist=wD0Xb4rb1Ok" allowfullscreen style="width:100%;"></iframe>
+                                <iframe src="https://www.youtube.com/embed/wD0Xb4rb1Ok?controls=0&showinfo=0&mute=1" allowfullscreen style="width:100%;"></iframe>
                             </td>
                             <td align="center" valign="top" width="23%">
-                                <iframe src="https://www.youtube.com/embed/DDvZay6kxkE?controls=0&showinfo=0&loop=1&mute=1&playlist=DDvZay6kxkE" allowfullscreen style="width:100%;"></iframe>
+                                <iframe src="https://www.youtube.com/embed/DDvZay6kxkE?controls=0&showinfo=0&mute=1" allowfullscreen style="width:100%;"></iframe>
                             </td>
                         </tr>
                     </tbody>
@@ -367,12 +373,12 @@
                 </h3>
                 <div class="form-group col-md-10 col-md-offset-0">
                     <textarea id="bibtex" class="form-control" readonly>
-    @article{goyal2023m3t,
-        title={M3T: Multi-Scale Memory Matching for Video Object Segmentation and Tracking},
-        author={Goyal, Raghav and Fan, Wan-Cyuan and Siam, Mennatullah and Sigal, Leonid},
-        journal={arXiv preprint arXiv:2312.08514},
-        year={2023}
-    }
+@article{goyal2023m3t,
+    title={M3T: Multi-Scale Memory Matching for Video Object Segmentation and Tracking},
+    author={Goyal, Raghav and Fan, Wan-Cyuan and Siam, Mennatullah and Sigal, Leonid},
+    journal={arXiv preprint arXiv:2312.08514},
+    year={2023}
+}
                     </textarea>
                 </div>
             </div>
