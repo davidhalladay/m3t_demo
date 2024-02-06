@@ -25,12 +25,12 @@
   height: 450px;
   border-radius: 15px;
   */
-  width: 704px;
-  height: 188px;
+  width: 640px;
+  height: 360px;
   border-radius: 12px;
 }
 #realtime-carousel.glide video {
-  width: 410px;
-  height: 230px;
+  width: 640px;
+  height: 360px;
   border-radius: 10px;
 }
