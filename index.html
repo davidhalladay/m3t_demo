@@ -28,6 +28,32 @@
     <link rel="stylesheet" href="img/resources/glide-custom.css">
     <!-- <script src="img/resources/handlers.js"></script> -->
     <script src="img/resources/glide.min.js"></script>
+    <script>
+        window.onload = function() {
+          new Glide("#dynamic-carousel", {
+            type: "carousel",
+            perView: 1.68,
+            focusAt: "center",
+            autoplay: 13000,
+            hoverpause: true
+          }).mount();
+          new Glide("#static-carousel", {
+            type: "carousel",
+            perView: 1.68,
+            focusAt: "center",
+            autoplay: 3000,
+            hoverpause: true
+          }).mount();
+          new Glide("#realtime-carousel", {
+            type: "carousel",
+            perView: 2.05,
+            focusAt: "center",
+            autoplay: 3000,
+            hoverpause: true
+          }).mount();
+        };
+    </script>
+    
     <!-- <script src="./src/select.js"></script> -->
     <!-- <script src="./src/bulma-slider.min.js"></script> -->
     <script src="./src/index.js"></script>
