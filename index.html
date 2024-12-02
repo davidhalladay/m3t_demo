@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>M3T</title>
+    <title>TAM-VT</title>
 
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -127,7 +127,7 @@
         <div class="row">
             <h2 class="col-md-12 text-center">
                 <small>
-                    WACV 2025
+                    WACV 2025 <br> Ranked <b>5</b>th in the <b>VOTS</b> Challenge at ECCV 2024 </br>
                 </small>
             </h2>
         </div>
@@ -142,15 +142,15 @@
                             </a>
                         </li>
                         <li>
-                            <a href="" target="_blank" rel="noopener noreferrer">
-                            <image src="img/logos_huggingface.png" height="60px">
-                                <h4><strong>Web demo (coming soon)</strong></h4>
+                            <a href="https://arxiv.org/abs/2312.08514" target="_blank" rel="noopener noreferrer">
+                            <image src="img/m3t_paper_cover.png" height="60px">
+                                <h4><strong>Supplementary</strong></h4>
                             </a>
                         </li>
                         <li>
-                            <a href="" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/davidhalladay/TAM-VT" target="_blank" rel="noopener noreferrer">
                             <image src="img/github.png" height="60px">
-                                <h4><strong>Code (coming soon)</strong></h4>
+                                <h4><strong>Code</strong></h4>
                             </a>
                         </li>
                     </ul>
@@ -214,7 +214,7 @@
                     TL;DR
                 </h3>
                 <p class="text-justify">
-                    M<sup>3</sup>T is a video object tracking model that, 
+                    TAM-VT is a video object tracking model that, 
                     with the initial segmentation mask and a video, 
                     accurately tracks the specified object throughout, even amidst object transformations.
                 </p>
@@ -229,16 +229,7 @@
                     Abstract
                 </h3>
                 <p class="text-justify">
-                    Video Object Segmentation (VOS) has became increasingly important with availability of larger datasets and more complex and realistic settings, 
-                    which involve long videos with global motion (e.g, in egocentric settings), depicting small objects undergoing both rigid and non-rigid (including state) deformations. 
-                    While a number of recent approaches have been explored for this task, these data characteristics still present challenges. In this work we propose a novel, 
-                    DETR-style encoder-decoder architecture, which focuses on systematically analyzing and addressing aforementioned challenges. 
-                    Specifically, our model enables on-line inference with long videos in a windowed fashion, by breaking the video into clips and propagating context among them using time-coded memory. 
-                    We illustrate that short clip length and longer memory with learned time-coding are important design choices for achieving state-of-the-art (SoTA) performance. 
-                    Further, we propose multi-scale matching and decoding to ensure sensitivity and accuracy for small objects. 
-                    Finally, we propose a novel training strategy that focuses learning on portions of the video where an object undergoes significant deformations -- a form of "soft" hard-negative mining, 
-                    implemented as loss-reweighting. Collectively, these technical contributions allow our model to achieve SoTA performance on two complex datasets -- VISOR and VOST. 
-                    A series of detailed ablations validate our design choices as well as provide insights into the importance of parameter choices and their impact on performance.
+                    Video Object Segmentation (VOS) has emerged as an increasingly important problem with availability of larger datasets and more complex and realistic settings, which involve long videos with global motion (e.g., in egocentric settings), depicting small objects undergoing both rigid and non-rigid (including state) deformations. While a number of recent approaches have been explored for this task, these data characteristics still present challenges. In this work we propose a novel, clip-based DETR-style encoder-decoder architecture, which focuses on systematically analyzing and addressing aforementioned challenges. Specifically, we propose a novel transformation-aware loss that focuses learning on portions of the video where an object undergoes significant deformations – a form of “soft” hard examples mining. Further, we propose a multiplicative time-coded memory, beyond vanilla additive positional encoding, which helps propagate context across long videos. Finally, we incorporate these in our proposed holistic multi-scale video transformer for tracking via multi-scale memory matching and decoding to ensure sensitivity and accuracy for long videos and small objects. Our model enables on-line inference with long videos in a windowed fashion, by breaking the video into clips and propagating context among them. We illustrate that short clip length and longer memory with learned time-coding are important design choices for improved performance. Collectively, these technical contributions enable our model to achieve new state-of-the-art (SoTA) performance on two complex egocentric datasets – VISOR and VOST, while achieving comparable to SoTA results on the conventional VOS benchmark, DAVIS’17. Detailed ablations validate our design choices and provide insights into the importance of parameter choices and impact on performance.
                 </p>
             </div>
         </div>
@@ -286,7 +277,7 @@
                     Results on VOST
                 </h3>
                 <p class="text-justify">
-                    The videos qualitatively compare M<sup>3</sup>T with <a href="https://github.com/z-x-yang/AOT" target="_blank" rel="noopener noreferrer">AOT</a>. Please wait a moment for loading the videos.
+                    The videos qualitatively compare TAM-VT with <a href="https://github.com/z-x-yang/AOT" target="_blank" rel="noopener noreferrer">AOT</a>. Please wait a moment for loading the videos.
                 </p>        
             </div>
         </div>
@@ -314,15 +305,12 @@
                             </td>
                             <td align="center" valign="top" width="32%">
                                 <iframe src="https://drive.google.com/file/d/19sk7g3En3hz9MQJ42Xl9r6h8JkPpj8sg/preview" width=100% allow="autoplay"></iframe>
-                                <!-- <iframe src="https://www.youtube.com/embed/OL7TanGNdMU?controls=0&showinfo=0&loop=1&mute=1&playlist=OL7TanGNdMU" allowfullscreen style="width:100%;"></iframe> -->
                             </td>
                             <td align="center" valign="top" width="32%">
                                 <iframe src="https://drive.google.com/file/d/1M-9l6yYerNvYDD_1PIO1LkVPMYRhwfi1/preview" width=100% allow="autoplay"></iframe>
-                                <!-- <iframe src="https://www.youtube.com/embed/wD0Xb4rb1Ok?controls=0&showinfo=0&loop=1&mute=1&playlist=wD0Xb4rb1Ok" allowfullscreen style="width:100%;"></iframe> -->
                             </td>
                             <td align="center" valign="top" width="32%">
                                 <iframe src="https://drive.google.com/file/d/1YKCTMb1_oujonLPKJAMsrKCxbgDn8CuN/preview" width=100% allow="autoplay"></iframe>
-                                <!-- <iframe src="https://www.youtube.com/embed/DDvZay6kxkE?controls=0&showinfo=0&loop=1&mute=1&playlist=DDvZay6kxkE" allowfullscreen style="width:100%;"></iframe> -->
                             </td>
                         </tr>
                         <tr>
@@ -331,15 +319,12 @@
                             </td>
                             <td align="center" valign="top" width="32%">
                                 <iframe src="https://drive.google.com/file/d/1O8j1XrjHf3aBEg5gIHji7RPDQ3XIP13y/preview" width=100% allow="autoplay"></iframe>
-                                <!-- <iframe src="https://www.youtube.com/embed/SEn4Af0q7Fs?controls=0&showinfo=0&loop=1&mute=1&playlist=SEn4Af0q7Fs" allowfullscreen style="width:100%;"></iframe> -->
                             </td>
                             <td align="center" valign="top" width="32%">
                                 <iframe src="https://drive.google.com/file/d/1z7tvGzmrI3StjXd_z8GT0QsDhvPdp6UD/preview" width=100% allow="autoplay"></iframe>
-                                <!-- <iframe src="https://www.youtube.com/embed/tmsR2Aadjl8?controls=0&showinfo=0&loop=1&mute=1&playlist=tmsR2Aadjl8" allowfullscreen style="width:100%;"></iframe> -->
                             </td>
                             <td align="center" valign="top" width="32%">
                                 <iframe src="https://drive.google.com/file/d/1N-FJkKTrm9RbPlzjYxlPIH3q1jY_-MF9/preview" width=100% allow="autoplay"></iframe>
-                                <!-- <iframe src="https://www.youtube.com/embed/QQdeYlcCeMk?controls=0&showinfo=0&loop=1&mute=1&playlist=QQdeYlcCeMk" allowfullscreen style="width:100%;"></iframe> -->
                             </td>
                         </tr>
                         <tr>
@@ -381,7 +366,7 @@
                     Results on VISOR
                 </h3>
                 <p class="text-justify">
-                    The videos qualitatively compare M<sup>3</sup>T with <a href="https://github.com/epic-kitchens/VISOR-VOS" target="_blank" rel="noopener noreferrer">STM</a>. Please wait a moment for loading the videos.
+                    The videos qualitatively compare TAM-VT with <a href="https://github.com/epic-kitchens/VISOR-VOS" target="_blank" rel="noopener noreferrer">STM</a>. Please wait a moment for loading the videos.
                 </p>
             </div>
         </div>
@@ -471,7 +456,7 @@
                     Related links
                 </h3>
                 <p class="text-justify">
-                    The M<sup>3</sup>T is implemented on top of the codebase of <a href="https://github.com/antoyang/TubeDETR" target="_blank" rel="noopener noreferrer">TubeDETR</a>, 
+                    The TAM-VT is implemented on top of the codebase of <a href="https://github.com/antoyang/TubeDETR" target="_blank" rel="noopener noreferrer">TubeDETR</a>, 
                     <a href="https://github.com/facebookresearch/Mask2Former" target="_blank" rel="noopener noreferrer">Mask2Former</a>, 
                     and <a href="https://github.com/TRI-ML/VOST" target="_blank" rel="noopener noreferrer">AOT in VOST</a>.
                 </p>
@@ -486,11 +471,11 @@
                 </h3>
                 <div class="form-group col-md-10 col-md-offset-0">
                     <textarea id="bibtex" class="form-control" readonly>
-@article{goyal2023m3t,
-    title={M3T: Multi-Scale Memory Matching for Video Object Segmentation and Tracking},
-    author={Goyal, Raghav and Fan, Wan-Cyuan and Siam, Mennatullah and Sigal, Leonid},
+@article{goyal2024tamvt,
+    title={TAM-VT: Transformation-Aware Multi-scale Video Transformer for Segmentation and Tracking}, 
+    author={Raghav Goyal and Wan-Cyuan Fan and Mennatullah Siam and Leonid Sigal},
     journal={arXiv preprint arXiv:2312.08514},
-    year={2023}
+    year={2024}
 }
                     </textarea>
                 </div>
